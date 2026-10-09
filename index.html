@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verde Fácil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header id="top-header" class="top-header oculto">
+            <span class="header-title">🌱 Verde Fácil</span>
+            <div id="usuario-badge" class="usuario-badge">
+                <span id="nome-usuario">Convidado</span>
+                <button onclick="sair()" class="btn-sair" title="Sair">🚪</button>
+            </div>
+        </header>
+
+        <div id="toast-alerta" class="toast-alerta oculto"></div>
+
+        <div id="tela-inicial" class="tela ativa">
+            <div class="logo-box">
+                <span class="emoji-logo">🌱</span>
+                <h1>Verde Fácil</h1>
+                <p>Cuidando do nosso meio ambiente!</p>
+            </div>
+
+            <form class="form-login-direto" onsubmit="fazerLogin(event)">
+                <div class="form-group">
+                    <label for="email-login">Digite seu e-mail para entrar:</label>
+                    <input type="email" id="email-login" placeholder="exemplo@email.com" required>
+                </div>
+                
+                <button type="submit" class="btn-primario">
+                    Entrar com E-mail
+                </button>
+            </form>
+
+            <div class="divisor">
+                <span>ou</span>
+            </div>
+
+            <button class="btn-secundario" onclick="entrarComoConvidado()">
+               Entrar como Convidado 
+            </button>
+        </div>
+
+        <div id="tela-principal" class="tela">
+            <div class="aviso-top">
+                📢 Coleta seletiva regular toda terça e quinta às 8h!
+            </div>
+
+            <div class="boas-vindas">
+                <h3 id="mensagem-boas-vindas">Olá, bem-vindo!</h3>
+            </div>
+
+            <h2 class="secao-titulo">O que você deseja fazer?</h2>
+
+            <div class="grid-menu">
+                <div class="card" onclick="navegar('tela-coleta')">
+                    <span class="card-emoji">♻️</span>
+                    <div class="card-info">
+                        <h3>Pontos de Coleta</h3>
+                        <p>Encontre ecopontos e locais de descarte</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="navegar('tela-denuncia')">
+                    <span class="card-emoji">🚨</span>
+                    <div class="card-info">
+                        <h3>Fazer Denúncia</h3>
+                        <p>Reporte descarte irregular ou sujeira</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secao-recentes">
+                <h3>Denúncias Registradas</h3>
+                <div id="lista-denuncias" class="lista-denuncias">
+                    <p class="sem-denuncias">Nenhuma denúncia registrada ainda.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tela-coleta" class="tela">
+            <h2>Pontos de Coleta</h2>
+            <p class="subtitulo-pagina">Ecopontos em Juazeiro do Piauí</p>
+            
+            <div class="busca-box">
+                <input type="text" id="busca-ecoponto" placeholder="🔍 Filtrar por material ou local..." oninput="filtrarEcopontos()">
+            </div>
+
+            <div id="container-ecopontos">
+                <!-- preenchido automaticamente pelo script.js -->
+            </div>
+        </div>
+
+        <div id="tela-denuncia" class="tela">
+            <h2>Fazer Denúncia</h2>
+            <p class="subtitulo-pagina">Informe detalhes do local afetado</p>
+
+            <form class="form-denuncia" onsubmit="enviarDenuncia(event)">
+                <div class="form-group">
+                    <label for="local">Endereço ou Ponto de Referência</label>
+                    <input type="text" id="local" placeholder="Ex: Av. Joaquim, Centro" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricao">Descrição da Denúncia</label>
+                    <textarea id="descricao" rows="3" placeholder="Descreva o problema (ex: lixo descartado na calçada)..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primario">Enviar Denúncia</button>
+            </form>
+        </div>
+        
+        <nav id="menu-navegacao" class="oculto">
+            <button id="nav-principal" onclick="navegar('tela-principal')">
+                <span class="nav-icon">🏠</span>
+                <span>Início</span>
+            </button>
+            <button id="nav-coleta" onclick="navegar('tela-coleta')">
+                <span class="nav-icon">♻️</span>
+                <span>Ecopontos</span>
+            </button>
+            <button id="nav-denuncia" onclick="navegar('tela-denuncia')">
+                <span class="nav-icon">🚨</span>
+                <span>Denúncia</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

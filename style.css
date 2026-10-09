@@ -1,0 +1,366 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e2e8f0;
+}
+
+.app-container {
+    width: 360px;
+    height: 620px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.1);
+}
+
+.top-header {
+    height: 44px;
+    background-color: #16a34a;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.usuario-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+}
+
+.btn-sair {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.toast-alerta {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+
+.tela {
+    display: none;
+    padding: 12px 14px;
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 56px;
+    background-color: #f8fafc;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+.oculto {
+    display: none !important;
+}
+
+#tela-inicial.ativa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+    background-color: #f0fdf4;
+    padding: 20px;
+}
+
+.emoji-logo {
+    font-size: 60px;
+}
+
+#tela-inicial .logo-box h1 {
+    color: #15803d;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+#tela-inicial .logo-box p {
+    color: #166534;
+    font-size: 14px;
+}
+
+.form-login-direto {
+    text-align: left;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #dcfce7;
+}
+
+.form-login-direto label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #166534;
+    margin-bottom: 4px;
+}
+
+.divisor {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.divisor::before, .divisor::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.divisor span {
+    padding: 0 8px;
+}
+
+.btn-primario, .btn-secundario {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-primario {
+    background-color: #16a34a;
+    color: #ffffff;
+}
+
+.btn-primario:hover {
+    background-color: #15803d;
+}
+
+.btn-secundario {
+    background-color: #ffffff;
+    color: #334155;
+    border-color: #cbd5e1;
+}
+
+.btn-secundario:hover {
+    background-color: #f1f5f9;
+}
+
+h2 {
+    font-size: 16px;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.secao-titulo, .subtitulo-pagina {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.boas-vindas {
+    margin-bottom: 10px;
+}
+
+.boas-vindas h3 {
+    font-size: 14px;
+    color: #15803d;
+}
+
+.aviso-top {
+    background-color: #fef3c7;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.grid-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card, .caixa-ponto, .item-denuncia {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.card-emoji {
+    font-size: 20px;
+    background-color: #f1f5f9;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.card-info h3, .caixa-ponto h4 {
+    font-size: 13px;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.card-info p, .ponto-desc {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.ponto-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.ponto-titulo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-status {
+    font-size: 10px;
+    font-weight: 600;
+    color: #166534;
+    background-color: #dcfce7;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.busca-box {
+    margin-bottom: 10px;
+}
+
+.busca-box input, .form-denuncia input, .form-denuncia textarea, .form-login-direto input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 12px;
+    outline: none;
+    margin-bottom: 8px;
+}
+
+.btn-acao-ponto {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+.secao-recentes {
+    margin-top: 14px;
+}
+
+.secao-recentes h3 {
+    font-size: 12px;
+    color: #334155;
+    margin-bottom: 6px;
+}
+
+.item-denuncia h5 {
+    font-size: 12px;
+    color: #0f172a;
+}
+
+.item-denuncia p {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.item-denuncia .meta {
+    font-size: 10px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.sem-denuncias {
+    font-size: 11px;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+nav button.ativo {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.nav-icon {
+    font-size: 16px;
+}
