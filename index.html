@@ -9,7 +9,7 @@
 <body>
 
     <div class="app-container">
-        
+
         <header id="top-header" class="top-header oculto">
             <span class="header-title">🌱 Verde Fácil</span>
             <div id="usuario-badge" class="usuario-badge">
@@ -27,24 +27,27 @@
                 <p>Cuidando do nosso meio ambiente!</p>
             </div>
 
-            <form class="form-login-direto" onsubmit="fazerLogin(event)">
-                <div class="form-group">
-                    <label for="email-login">Digite seu e-mail para entrar:</label>
-                    <input type="email" id="email-login" placeholder="exemplo@email.com" required>
+            <form onsubmit="fazerLogin(event)" class="form-login-direto">
+                <label for="email-login">Digite seu e-mail para entrar:</label>
+                <input type="email" id="email-login" placeholder="exemplo@email.com" required>
+
+                <label for="senha-login">Digite sua senha:</label>
+                <div style="position: relative; display: flex; align-items: center;">
+                    <input type="password" id="senha-login" placeholder="Ex: Verde@2026" required style="width: 100%; padding-right: 38px;">
+                    <button type="button" id="btn-toggle-senha" onclick="alternarVisibilidadeSenha()" title="Mostrar/Ocultar senha" style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; font-size: 16px; padding: 0;">👁️</button>
                 </div>
-                
-                <button type="submit" class="btn-primario">
-                    Entrar com E-mail
-                </button>
+                <small style="display:block; font-size:10px; color:#64748b; margin-top:4px; margin-bottom:8px;">
+                    Use maiúscula, minúscula, número e símbolo (mín. 6).
+                </small>
+
+                <button type="submit" class="btn-primario">Entrar com E-mail</button>
             </form>
 
             <div class="divisor">
                 <span>ou</span>
             </div>
 
-            <button class="btn-secundario" onclick="entrarComoConvidado()">
-               Entrar como Convidado 
-            </button>
+            <button onclick="entrarComoConvidado()" class="btn-secundario">Entrar como Convidado</button>
         </div>
 
         <div id="tela-principal" class="tela">
@@ -54,13 +57,12 @@
 
             <div class="boas-vindas">
                 <h3 id="mensagem-boas-vindas">Olá, bem-vindo!</h3>
+                <h2>O que você deseja fazer?</h2>
             </div>
-
-            <h2 class="secao-titulo">O que você deseja fazer?</h2>
 
             <div class="grid-menu">
                 <div class="card" onclick="navegar('tela-coleta')">
-                    <span class="card-emoji">♻️</span>
+                    <div class="card-emoji">♻</div>
                     <div class="card-info">
                         <h3>Pontos de Coleta</h3>
                         <p>Encontre ecopontos e locais de descarte</p>
@@ -68,7 +70,7 @@
                 </div>
 
                 <div class="card" onclick="navegar('tela-denuncia')">
-                    <span class="card-emoji">🚨</span>
+                    <div class="card-emoji">🚨</div>
                     <div class="card-info">
                         <h3>Fazer Denúncia</h3>
                         <p>Reporte descarte irregular ou sujeira</p>
@@ -78,7 +80,7 @@
 
             <div class="secao-recentes">
                 <h3>Denúncias Registradas</h3>
-                <div id="lista-denuncias" class="lista-denuncias">
+                <div id="lista-denuncias">
                     <p class="sem-denuncias">Nenhuma denúncia registrada ainda.</p>
                 </div>
             </div>
@@ -87,42 +89,36 @@
         <div id="tela-coleta" class="tela">
             <h2>Pontos de Coleta</h2>
             <p class="subtitulo-pagina">Ecopontos em Juazeiro do Piauí</p>
-            
+
             <div class="busca-box">
-                <input type="text" id="busca-ecoponto" placeholder="🔍 Filtrar por material ou local..." oninput="filtrarEcopontos()">
+                <input type="text" id="busca-ecoponto" onkeyup="filtrarEcopontos()" placeholder="Buscar por bairro ou material...">
             </div>
 
-            <div id="container-ecopontos">
-                <!-- preenchido automaticamente pelo script.js -->
-            </div>
+            <div id="container-ecopontos"></div>
         </div>
 
         <div id="tela-denuncia" class="tela">
             <h2>Fazer Denúncia</h2>
-            <p class="subtitulo-pagina">Informe detalhes do local afetado</p>
+            <p class="subtitulo-pagina">Selecione ou digite a rua/bairro em Juazeiro do Piauí</p>
 
-            <form class="form-denuncia" onsubmit="enviarDenuncia(event)">
-                <div class="form-group">
-                    <label for="local">Endereço ou Ponto de Referência</label>
-                    <input type="text" id="local" placeholder="Ex: Av. Joaquim, Centro" required>
+            <form onsubmit="enviarDenuncia(event)" class="form-denuncia">
+                <div style="position: relative; width: 100%;">
+                    <input type="text" id="local" onfocus="mostrarSugestoesEndereco()" oninput="buscarRuasJuazeiro(this.value)" placeholder="Clique para escolher o bairro ou digite a rua..." autocomplete="off" required style="width: 100%;">
+                    <div id="dropdown-enderecos" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; max-height: 180px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.12); text-align: left;"></div>
                 </div>
 
-                <div class="form-group">
-                    <label for="descricao">Descrição da Denúncia</label>
-                    <textarea id="descricao" rows="3" placeholder="Descreva o problema (ex: lixo descartado na calçada)..." required></textarea>
-                </div>
-
+                <textarea id="descricao" rows="4" placeholder="Descrição da Denúncia" required></textarea>
                 <button type="submit" class="btn-primario">Enviar Denúncia</button>
             </form>
         </div>
-        
+
         <nav id="menu-navegacao" class="oculto">
             <button id="nav-principal" onclick="navegar('tela-principal')">
                 <span class="nav-icon">🏠</span>
                 <span>Início</span>
             </button>
             <button id="nav-coleta" onclick="navegar('tela-coleta')">
-                <span class="nav-icon">♻️</span>
+                <span class="nav-icon">♻</span>
                 <span>Ecopontos</span>
             </button>
             <button id="nav-denuncia" onclick="navegar('tela-denuncia')">
