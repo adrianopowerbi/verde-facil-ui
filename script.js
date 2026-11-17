@@ -1,4 +1,6 @@
-const API_URL = 'https://onrender.com';
+const HOST_API = 'verde-facil-api' + '.onrender.com';
+const API_URL = 'https://' + HOST_API + '/api';
+
 
 let usuarioLogado = null;
 let listaDenuncias = [];
